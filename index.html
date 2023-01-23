@@ -39,6 +39,16 @@
         // this.load.image('sky', 'assets/skies/space3.png');
         // this.load.image('logo', 'assets/sprites/phaser3-logo.png');
         this.load.image('red', 'assets/particles/wake.png');
+
+        // this.load.spritesheet('dude', 
+        // 'assets/dude.png',
+        // { frameWidth: 32, frameHeight: 48 }
+        // );
+
+        this.load.spritesheet('boatAnimated', 
+        'assets/boat01keyframe.png',
+        { frameWidth: 32, frameHeight: 32 }
+        );
     }
 
     function create ()
@@ -62,28 +72,28 @@
         emitter.startFollow(logo);
 
         //adding in player
-        player = this.physics.add.sprite(100, 450, 'boat');
+        player = this.physics.add.sprite(100, 450, 'boatAnimated');
 
         player.setBounce(0.2);
         player.setCollideWorldBounds(true);
-
+        
         this.anims.create({
             key: 'left',
-            frames: this.anims.generateFrameNumbers('boat', { start: 0, end: 3 }),
-            frameRate: 10,
+            frames: this.anims.generateFrameNumbers('boat', { start: 0, end: 4 }),
+            frameRate: 24,
             repeat: -1
         });
 
         this.anims.create({
             key: 'turn',
             frames: [ { key: 'boat', frame: 4 } ],
-            frameRate: 20
+            frameRate: 24
         });
 
         this.anims.create({
             key: 'right',
             frames: this.anims.generateFrameNumbers('boat', { start: 5, end: 8 }),
-            frameRate: 10,
+            frameRate: 24,
             repeat: -1
         });
 
