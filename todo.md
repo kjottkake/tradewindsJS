@@ -2,12 +2,10 @@
 []How do you change a scene?
 []How do you click on an item?
 
-
-
 []Graphics
     []Textures
         []Water
-
+    [x]Boat in map screen
 
 []UI
     []Menu Screen
@@ -17,3 +15,4 @@
 []Gameplay
     []Town Screen
 
+[]How do you control the boat
