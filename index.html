@@ -26,6 +26,7 @@
 
     function preload ()
     {
+        this.load.image('boat', 'assets/ship.png');
         this.load.image('chart', 'assets/nautical_chart.jpg');
         // this.load.setBaseURL('http://labs.phaser.io');
 
@@ -46,7 +47,7 @@
             blendMode: 'ADD'
         });
 
-        var logo = this.physics.add.image(400, 100, 'logo');
+        var logo = this.physics.add.image(400, 100, 'boat');
 
         logo.setVelocity(100, 200);
         logo.setBounce(1, 1);
