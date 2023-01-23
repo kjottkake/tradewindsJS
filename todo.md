@@ -1,3 +1,9 @@
+[]How do you create a scene?
+[]How do you change a scene?
+[]How do you click on an item?
+
+
+
 []Graphics
     []Textures
         []Water
@@ -10,3 +16,4 @@
     []Battle screen
 []Gameplay
     []Town Screen
+
