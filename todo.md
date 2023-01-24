@@ -4,6 +4,9 @@
 []How do you scale images?
     [x]Change boat size
     [x]change map sizes
+[]How do you create bounding box to match player sprite
+
+
 
 []Graphics
     []Textures
@@ -15,6 +18,7 @@
     [x]Boat animation needs to be fixed
 
 []Collisions
+    []Added player and logo collision
 
 []UI
     []Menu Screen
