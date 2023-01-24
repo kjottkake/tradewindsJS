@@ -5,7 +5,83 @@
     </head>
 <body>
     <script>
-        
+        var config = {
+            type: Phaser.AUTO,
+            width: 640,
+            height: 640,
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    // gravity: { y: 20 }
+                }
+            },
+            //I guess this controls load order?
+            scene: {
+                preload: preload,
+                create: create,
+                update: update
+            }
+        };
+
+        var player;
+        // var cursors;
+        var game = new Phaser.Game(config);
+
+        function preload() {
+            //image assets
+            this.load.image('boat', 'assets/boat01enlarged.png');
+            this.load.image('map', 'assets/mapOcean.png');
+            this.load.image('particle', 'assets/particles/wake.png');
+
+            //sprite sheet assets
+            this.load.spritesheet('boatAnimated',
+                'assets/boat01keyframe.png',
+                { frameWidth: 32, frameHeight: 32 }
+            );
+
+            //loading in music and soundfx
+            this.load.audio("ocean", 'assets/sounds/oceanwaves.mp3');
+            this.load.audio("gun", 'assets/sounds/gun.mp3');
+
+        }
+
+        function create() {
+            ocean = this.sound.add("ocean", {loop: true});
+            gun = this.sound.add('gun');
+
+
+            this.add.image(320, 320, 'map'); //for some reason you need to place the image half of the original  height and width
+
+            var particles = this.add.particles('particle');
+
+            //particles emitter
+            var emitter = particles.createEmitter({
+                speed: 15,
+                scale: { start: 1, end: 0 },
+                blendMode: 'ADD'
+            });
+            
+            //adding in player
+            player = this.physics.add.sprite(220, 450, 'boat');
+            player.setBounce(0.2);
+            player.setCollideWorldBounds(true);
+            player.setSize(player.width, player.height, true); //attempting to set bounding box to correct size
+            emitter.startFollow(player);
+
+            // cursors = this.input.keyboard.createCursorKeys();
+
+            //uncomment to hear the ocean
+            ocean.play();
+            // gun.play();
+
+            this.input.keyboard.on('keydown_SPACE', function (){
+                gun.play();
+            });
+        }
+
+        function update() {
+            
+        }
     </script>
 </body>
 </html>
