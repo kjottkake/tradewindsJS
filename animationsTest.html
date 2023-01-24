@@ -34,9 +34,9 @@
             this.load.image('particle', 'assets/particles/wake.png');
 
             //sprite sheet assets
-            this.load.spritesheet('boatAnimated',
-                'assets/boat01keyframe.png',
-                { frameWidth: 32, frameHeight: 32 }
+            this.load.spritesheet('firing',
+                'assets/firingkeyframe.png',
+                { frameWidth: 112, frameHeight: 128 }
             );
 
             //loading in music and soundfx
@@ -62,7 +62,7 @@
             });
             
             //adding in player
-            player = this.physics.add.sprite(220, 450, 'boat');
+            player = this.physics.add.sprite(220, 450, 'firing');
             player.setBounce(0.2);
             player.setCollideWorldBounds(true);
             player.setSize(player.width, player.height, true); //attempting to set bounding box to correct size
@@ -75,7 +75,15 @@
             // gun.play();
 
             this.input.keyboard.on('keydown_SPACE', function (){
+                this.audioPlayDelay = 120;
                 gun.play();
+                player.anims.play('fire', true);
+            });
+
+            this.anims.create({
+            key: 'fire',
+            frames: this.anims.generateFrameNumbers('firing', { start: 0, end: 11 }),
+            frameRate: 12
             });
         }
 
