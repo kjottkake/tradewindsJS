@@ -33,6 +33,16 @@ export class MapScene extends Phaser.Scene {
 	}
 
 	create() {
+		//set up the base scene
+		// super.create();
+
+		//set the grid for the scene
+		this.makeAlignGrid(11, 11);
+
+		//show numbers for layout and debugging 
+		this.aGrid.showNumbers();
+		
+		
 		this.sound.add("ocean", {loop: true});
 
 		this.add.image(320, 320, 'map'); //for some reason you need to place the image half of the original  height and width

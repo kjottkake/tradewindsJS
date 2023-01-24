@@ -4,7 +4,7 @@ import { MapScene } from "./scenes/MapScene.js"
 
 var config = {
 	type: Phaser.AUTO,
-	width: 640,
+	width: 960,
 	height: 640,
 	physics: {
 		default: 'arcade',
