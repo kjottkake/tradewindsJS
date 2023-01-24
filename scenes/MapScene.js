@@ -22,6 +22,9 @@ export class MapScene extends Phaser.Scene {
 		this.load.image('map', 'assets/map.png');
 		this.load.image('particle', 'assets/particles/wake.png');
 
+		//ui elements
+		this.load.image('panel', 'assets/ui/sidepaneluismall.png');
+
 		//sprite sheet assets
 		this.load.spritesheet('boatAnimated',
 			'assets/boat01keyframe.png',
@@ -33,18 +36,11 @@ export class MapScene extends Phaser.Scene {
 	}
 
 	create() {
-		//set up the base scene
-		// super.create();
-
-		//set the grid for the scene
-		this.makeAlignGrid(11, 11);
-
-		//show numbers for layout and debugging 
-		this.aGrid.showNumbers();
-		
-		
+				
 		this.sound.add("ocean", {loop: true});
 
+
+		this.add.image('panel');
 		this.add.image(320, 320, 'map'); //for some reason you need to place the image half of the original  height and width
 
 		var particles = this.add.particles('particle');
