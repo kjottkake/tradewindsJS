@@ -2,8 +2,8 @@
 []How do you change a scene?
 []How do you click on an item?
 []How do you scale images?
-    []Change boat size
-    []change map sizes
+    [x]Change boat size
+    [x]change map sizes
 
 []Graphics
     []Textures
@@ -21,6 +21,7 @@
     []Town screen
     []Map screen
     []Battle screen
+        []Started on battle screen
 
 []Gameplay
     []Town Screen
@@ -33,3 +34,4 @@
         [x]boat points in correct direction
         []speed must be correct
 
+[]Sound

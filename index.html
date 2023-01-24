@@ -75,37 +75,16 @@
         }
 
         function update() {
-
-            // if (cursors.left.isDown)
-            // {
-            //     player.setVelocityX(-16);
-
-            // }
-            // else if (cursors.right.isDown)
-            // {
-            //     player.setVelocityX(16);
-            // }
-            // else if (cursors.down.isDown)
-            // {
-            //     player.setVelocityY(16);
-            // }
-            // else if (cursors.up.isDown)
-            // {
-            //     player.setVelocityY(-16);
-            // }
-            // else
-            // {
-            //     player.setVelocityX(0);
-            // }
             if (cursors.up.isDown) {
-                this.physics.velocityFromRotation(player.rotation + 4.7123, 10, player.body.acceleration);
+                this.physics.velocityFromRotation(player.rotation + 4.7123, 10, player.body.acceleration); //player.rotation + angle in radians of sprite
+                // player.setVelocityY(-16);
             }
             else {
                 player.body.acceleration.set(0);
             }
 
             if (cursors.left.isDown) {
-                player.body.angularVelocity = -75;
+                player.body.angularVelocity = -15;
             }
             else if (cursors.right.isDown) {
                 player.body.angularVelocity = 75;
