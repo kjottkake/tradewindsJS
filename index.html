@@ -98,7 +98,7 @@
             //     player.setVelocityX(0);
             // }
             if (cursors.up.isDown) {
-                this.physics.velocityFromRotation(player.rotation, 100, player.body.acceleration);
+                this.physics.velocityFromRotation(player.rotation + 4.7123, 10, player.body.acceleration);
             }
             else {
                 player.body.acceleration.set(0);

@@ -2,6 +2,8 @@
 []How do you change a scene?
 []How do you click on an item?
 []How do you scale images?
+    []Change boat size
+    []change map sizes
 
 []Graphics
     []Textures
@@ -10,7 +12,7 @@
 
 
 []Animation
-    []Boat animation needs to be fixed
+    [x]Boat animation needs to be fixed
 
 []Collisions
 
@@ -27,6 +29,7 @@
 
 []How do you control the boat
     []boat movement
-        []smooth movement
-        []boat points in correct direction
+        [x]smooth movement
+        [x]boat points in correct direction
+        []speed must be correct
 
