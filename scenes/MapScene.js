@@ -1,6 +1,19 @@
 export class MapScene extends Phaser.Scene {
 	constructor() {
 		super("map-scene")
+
+		this.towns = [
+			{
+				bounds: new Phaser.Geom.Circle(500, 180, 33),
+				name: "jia-ching",
+				color: 0x008b8b,
+			},
+			{
+				bounds: new Phaser.Geom.Circle(320, 320, 33),
+				name: "tan-chon",
+				color: 0xaa0000,
+			}
+		]
 	}
 
 	preload() {
@@ -63,6 +76,17 @@ export class MapScene extends Phaser.Scene {
 
 		//uncomment to hear the ocean
 		// ocean.play();
+
+		// make clickable circles for the .bounds of the town objects
+		let pointer = this.input.activePointer;
+		this.towns.forEach((town, i) => {
+			this.towns[i].graphics = this.add.graphics({fillStyle: {color: town.color}})
+			town.graphics.fillCircleShape(town.bounds)
+			town.graphics.setInteractive(town.bounds, Phaser.Geom.Circle.Contains)
+			town.graphics.on("pointerdown", function() {
+				alert(`${town.name} clicked`);
+			})
+		})
 
 	}
 
