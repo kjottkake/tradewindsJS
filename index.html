@@ -1,105 +1,121 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
 </head>
+
 <body>
 
     <script>
-    var config = {
-        type: Phaser.AUTO,
-        width: 640,
-        height: 640,
-        physics: {
-            default: 'arcade',
-            arcade: {
-                // gravity: { y: 20 }
+        var config = {
+            type: Phaser.AUTO,
+            width: 640,
+            height: 640,
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    // gravity: { y: 20 }
+                }
+            },
+            //I guess this controls load order?
+            scene: {
+                preload: preload,
+                create: create,
+                update: update
             }
-        },
-        //I guess this controls load order?
-        scene: {
-            preload: preload,
-            create: create,
-            update: update
+        };
+
+        var player;
+        var cursors;
+
+        var game = new Phaser.Game(config);
+
+        function preload() {
+            //image assets
+            this.load.image('boat', 'assets/boat01.png');
+            this.load.image('map', 'assets/map.png');
+            this.load.image('red', 'assets/particles/wake.png');
+
+            //sprite sheet assets
+            this.load.spritesheet('boatAnimated',
+                'assets/boat01keyframe.png',
+                { frameWidth: 32, frameHeight: 32 }
+            );
         }
-    };
 
-    var player;
-    var cursors;
+        function create() {
+            this.add.image(320, 320, 'map'); //for some reason you need to place the image half of the original  height and width
 
-    var game = new Phaser.Game(config);
+            var particles = this.add.particles('red');
 
-    function preload ()
-    {
-        //image assets
-        this.load.image('boat', 'assets/boat01.png');
-        this.load.image('map', 'assets/map.png');
-        this.load.image('red', 'assets/particles/wake.png');
+            //particles emitter
+            var emitter = particles.createEmitter({
+                speed: 15,
+                scale: { start: 1, end: 0 },
+                blendMode: 'ADD'
+            });
 
-        //sprite sheet assets
-        this.load.spritesheet('boatAnimated', 
-        'assets/boat01keyframe.png',
-        { frameWidth: 32, frameHeight: 32 }
-        );
-    }
+            //original logo turned into boat
+            var logo = this.physics.add.image(400, 100, 'boat');
 
-    function create ()
-    {
-        this.add.image(320, 320, 'map'); //for some reason you need to place the image half of the original  height and width
-        
-        var particles = this.add.particles('red');
-
-        //particles emitter
-        var emitter = particles.createEmitter({
-            speed: 15,
-            scale: { start: 1, end: 0 },
-            blendMode: 'ADD'
-        });
-
-        //original logo turned into boat
-        var logo = this.physics.add.image(400, 100, 'boat');
-
-        logo.setVelocity(10, 20);
-        logo.setBounce(1, 1);
-        logo.setCollideWorldBounds(true);
-        emitter.startFollow(logo);
+            logo.setVelocity(10, 20);
+            logo.setBounce(1, 1);
+            logo.setCollideWorldBounds(true);
+            emitter.startFollow(logo);
 
 
-        //adding in player
-        player = this.physics.add.sprite(100, 450, 'boat');
-        player.setBounce(0.2);
-        player.setCollideWorldBounds(true);
+            //adding in player
+            player = this.physics.add.sprite(100, 450, 'boat');
+            player.setBounce(0.2);
+            player.setCollideWorldBounds(true);
 
-        cursors = this.input.keyboard.createCursorKeys();
-
-    }
-
-    function update ()
-    {
-
-        if (cursors.left.isDown)
-        {
-            player.setVelocityX(-16);
+            cursors = this.input.keyboard.createCursorKeys();
 
         }
-        else if (cursors.right.isDown)
-        {
-            player.setVelocityX(16);
+
+        function update() {
+
+            // if (cursors.left.isDown)
+            // {
+            //     player.setVelocityX(-16);
+
+            // }
+            // else if (cursors.right.isDown)
+            // {
+            //     player.setVelocityX(16);
+            // }
+            // else if (cursors.down.isDown)
+            // {
+            //     player.setVelocityY(16);
+            // }
+            // else if (cursors.up.isDown)
+            // {
+            //     player.setVelocityY(-16);
+            // }
+            // else
+            // {
+            //     player.setVelocityX(0);
+            // }
+            if (cursors.up.isDown) {
+                this.physics.velocityFromRotation(player.rotation, 100, player.body.acceleration);
+            }
+            else {
+                player.body.acceleration.set(0);
+            }
+
+            if (cursors.left.isDown) {
+                player.body.angularVelocity = -150;
+            }
+            else if (cursors.right.isDown) {
+                player.body.angularVelocity = 150;
+            }
+            else {
+                player.body.angularVelocity = 0;
+            }
         }
-        else if (cursors.down.isDown)
-        {
-            player.setVelocityY(16);
-        }
-        else if (cursors.up.isDown)
-        {
-            player.setVelocityY(-16);
-        }
-        else
-        {
-            player.setVelocityX(0);
-        }
-    }
     </script>
 
 </body>
+
 </html>
