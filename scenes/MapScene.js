@@ -21,7 +21,7 @@ export class MapScene extends Phaser.Scene {
 		this.load.image('boat', 'assets/boat01enlarged.png');
 		this.load.image('map', 'assets/map800x600.png');
 		this.load.image('particle', 'assets/particles/wake.png');
-
+		this.load.image('bullet', 'assets/bullet.png');
 		//ui elements
 		// this.load.image('panel', 'assets/ui/sizepanel.png');
 		// this.load.image('notifications', 'assets/ui/notifications.png');
@@ -37,6 +37,10 @@ export class MapScene extends Phaser.Scene {
 	}
 
 	create() {
+
+		// Add 2 groups for Bullet objects
+		// playerBullets = this.physics.add.group({ classType: Bullet, runChildUpdate: true });
+		// enemyBullets = this.physics.add.group({ classType: Bullet, runChildUpdate: true });
 				
 		this.sound.add("ocean", {loop: true});
 
@@ -47,12 +51,6 @@ export class MapScene extends Phaser.Scene {
 
 		//particles emitter
 		var emitter = particles.createEmitter({
-			speed: 15,
-			scale: { start: 1, end: 0 },
-			blendMode: 'ADD'
-		});
-
-		var emitterPlayer = particles.createEmitter({
 			speed: 15,
 			scale: { start: 1, end: 0 },
 			blendMode: 'ADD'
@@ -69,7 +67,7 @@ export class MapScene extends Phaser.Scene {
 		drone.setSize(drone.width, drone.height, true); //attempting to set bounding box to correct size
 		
 		emitter.startFollow(drone);
-		// emitterPlayer.startFollow(player);
+		
 
 		//adding in player
 		
