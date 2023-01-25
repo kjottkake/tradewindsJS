@@ -23,8 +23,9 @@ export class MapScene extends Phaser.Scene {
 		this.load.image('particle', 'assets/particles/wake.png');
 
 		//ui elements
-		this.load.image('panel', 'assets/ui/sizepanel.png');
-		this.load.image('notifications', 'assets/ui/notifications.png');
+		// this.load.image('panel', 'assets/ui/sizepanel.png');
+		// this.load.image('notifications', 'assets/ui/notifications.png');
+		
 		//sprite sheet assets
 		this.load.spritesheet('boatAnimated',
 			'assets/boat01keyframe.png',
@@ -39,8 +40,6 @@ export class MapScene extends Phaser.Scene {
 				
 		this.sound.add("ocean", {loop: true});
 
-
-		
 		this.add.image(0,0, 'map').setOrigin(0,0); //for some reason you need to place the image half of the original  height and width
 		// this.add.image(0,0, 'panel').setOrigin(0,0); //ui set
 		// this.add.image(318+165, 54+493, 'notifications'); //wtf
@@ -53,29 +52,36 @@ export class MapScene extends Phaser.Scene {
 			blendMode: 'ADD'
 		});
 
+		var emitterPlayer = particles.createEmitter({
+			speed: 15,
+			scale: { start: 1, end: 0 },
+			blendMode: 'ADD'
+		});
+
 		//original logo turned into boat
-		var logo = this.physics.add.image(400, 100, 'boat');
+		var drone = this.physics.add.image(400, 100, 'boat');
 
 
-		logo.setVelocity(10, 20);
-		logo.setBounce(1, 1);
-		logo.setCollideWorldBounds(true);
+		drone.setVelocity(10, 20);
+		drone.setBounce(1, 1);
+		drone.setCollideWorldBounds(true);
 		
-		logo.setSize(logo.width, logo.height, true); //attempting to set bounding box to correct size
-		emitter.startFollow(logo);
-
+		drone.setSize(drone.width, drone.height, true); //attempting to set bounding box to correct size
+		
+		emitter.startFollow(drone);
+		// emitterPlayer.startFollow(player);
 
 		//adding in player
 		
 		
 		this.player = this.physics.add.sprite(100, 450, 'boat');
-		this.player.setBounce(0.2);
+		this.player.setBounce(0.1);
 		this.player.setCollideWorldBounds(true);
 		//attempting to set bounding box to correct size
-		this.player.setSize(this.player.width, this.player.height, true);
+		// this.player.setSize(this.player.width, this.player.height, true);
 
 		this.cursors = this.input.keyboard.createCursorKeys();
-		this.physics.add.collider(this.player, logo);
+		this.physics.add.collider(this.player, drone);
 
 		this.input.keyboard.once('keydown-SPACE', function(event) {
 			this.scene.start("town-scene")
@@ -111,7 +117,7 @@ export class MapScene extends Phaser.Scene {
 		}
 
 		if (this.cursors.left.isDown) {
-			this.player.body.angularVelocity = -15;
+			this.player.body.angularVelocity = -75;
 		}
 		else if (this.cursors.right.isDown) {
 			this.player.body.angularVelocity = 75;
