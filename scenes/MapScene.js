@@ -19,12 +19,12 @@ export class MapScene extends Phaser.Scene {
 	preload() {
 		//image assets
 		this.load.image('boat', 'assets/boat01enlarged.png');
-		this.load.image('map', 'assets/map.png');
+		this.load.image('map', 'assets/MapSized.png');
 		this.load.image('particle', 'assets/particles/wake.png');
 
 		//ui elements
-		this.load.image('panel', 'assets/ui/sidepaneluismall.png');
-
+		this.load.image('panel', 'assets/ui/sizepanel.png');
+		this.load.image('notifications', 'assets/ui/notifications.png');
 		//sprite sheet assets
 		this.load.spritesheet('boatAnimated',
 			'assets/boat01keyframe.png',
@@ -40,9 +40,10 @@ export class MapScene extends Phaser.Scene {
 		this.sound.add("ocean", {loop: true});
 
 
-		this.add.image(160,320, 'panel'); //ui set
-		this.add.image(640, 320, 'map'); //for some reason you need to place the image half of the original  height and width
-
+		
+		this.add.image(318+165, 247, 'map'); //for some reason you need to place the image half of the original  height and width
+		this.add.image(0,0, 'panel').setOrigin(0,0); //ui set
+		this.add.image(318+165, 54+493, 'notifications'); //wtf
 		var particles = this.add.particles('particle');
 
 		//particles emitter
