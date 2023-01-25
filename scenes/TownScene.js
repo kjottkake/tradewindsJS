@@ -10,8 +10,8 @@ export class TownScene extends Phaser.Scene {
 	}
 
 	create() {
-		// this.add.image("panel");
-		this.add.image(320, 320, "town");
+		this.add.image(160,320, 'panel'); //ui set
+		this.add.image(640, 320, "town");
 
 		this.input.keyboard.once('keydown-SPACE', function(event) {
 			this.scene.start("map-scene")

@@ -40,8 +40,8 @@ export class MapScene extends Phaser.Scene {
 		this.sound.add("ocean", {loop: true});
 
 
-		this.add.image('panel');
-		this.add.image(320, 320, 'map'); //for some reason you need to place the image half of the original  height and width
+		this.add.image(160,320, 'panel'); //ui set
+		this.add.image(640, 320, 'map'); //for some reason you need to place the image half of the original  height and width
 
 		var particles = this.add.particles('particle');
 
