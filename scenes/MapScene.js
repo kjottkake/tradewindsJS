@@ -1,3 +1,19 @@
+import { Bullet } from "./Bullet.js"
+
+class Enemy {
+	static GOAL = {
+		LEFT: 0,
+		RIGHT: 1,
+	}
+
+	constructor(scene) {
+		this.scene = scene
+		scene.physics.add.sprite(200, 450, 'boat');
+
+		this.goal = Enemy.GOAL.LEFT;
+	}
+}
+
 export class MapScene extends Phaser.Scene {
 	constructor() {
 		super("map-scene")
@@ -89,7 +105,6 @@ export class MapScene extends Phaser.Scene {
 		// ocean.play();
 
 		// make clickable circles for the .bounds of the town objects
-		let pointer = this.input.activePointer;
 		this.towns.forEach((town, i) => {
 			this.towns[i].graphics = this.add.graphics({fillStyle: {color: town.color}})
 			town.graphics.fillCircleShape(town.bounds)
@@ -98,6 +113,9 @@ export class MapScene extends Phaser.Scene {
 				alert(`${town.name} clicked`);
 			})
 		})
+
+		// let new_boat = new Enemy(this)
+		let new_boat = new Bullet(this)
 
 	}
 
