@@ -1,17 +1,25 @@
-export class Bullet extends Phaser.GameObjects.Image {
-	constructor(scene) {
-		super(scene, 100, 100, "boat")
+export const Bullet = new Phaser.Class({
 
-		// Phaser.GameObjects.Image.call(this, scene, 100, 100, 'boat');
+    Extends: Phaser.GameObjects.Image,
+
+    initialize:
+
+    // Bullet Constructor
+    function Bullet (scene)
+    {
+        Phaser.GameObjects.Image.call(this, scene, 100, 100, 'boat');
         this.speed = 1;
         this.born = 0;
         this.direction = 0;
         this.xSpeed = 0;
         this.ySpeed = 0;
-        this.setSize(12, 12, true);
-	}
-	// Fires a bullet from the player to the reticle
-    fire(shooter, target) {
+        // this.setSize(12, 12, true);
+        this.setSize(100, 100, true);
+    },
+
+    // Fires a bullet from the player to the reticle
+    fire: function (shooter, target)
+    {
         this.setPosition(shooter.x, shooter.y); // Initial position
         this.direction = Math.atan( (target.x-this.x) / (target.y-this.y));
 
@@ -29,9 +37,10 @@ export class Bullet extends Phaser.GameObjects.Image {
 
         this.rotation = shooter.rotation; // angle bullet with shooters rotation
         this.born = 0; // Time since new bullet spawned
-    }
-	// Updates the position of the bullet each cycle
-	update(time, delta)
+    },
+
+    // Updates the position of the bullet each cycle
+    update: function (time, delta)
     {
         this.x += this.xSpeed * delta;
         this.y += this.ySpeed * delta;
@@ -42,4 +51,5 @@ export class Bullet extends Phaser.GameObjects.Image {
             this.setVisible(false);
         }
     }
-}
+
+});
