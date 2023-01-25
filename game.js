@@ -10,6 +10,7 @@ var config = {
 		default: 'arcade',
 		arcade: {
 			// gravity: { y: 20 }
+            debug: true
 		}
 	},
 	scene: [MapScene, TownScene]

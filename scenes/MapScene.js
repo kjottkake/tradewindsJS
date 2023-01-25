@@ -74,13 +74,13 @@ export class MapScene extends Phaser.Scene {
 
 		//original logo turned into boat
 		var drone = this.physics.add.image(400, 100, 'boat');
-
+		drone.setSize(54, 16, true);
 
 		drone.setVelocity(10, 20);
 		drone.setBounce(1, 1);
 		drone.setCollideWorldBounds(true);
 		
-		drone.setSize(drone.width, drone.height, true); //attempting to set bounding box to correct size
+		// drone.setSize(drone.width, drone.height, true); //attempting to set bounding box to correct size
 		
 		emitter.startFollow(drone);
 		
@@ -89,6 +89,7 @@ export class MapScene extends Phaser.Scene {
 		
 		
 		this.player = this.physics.add.sprite(100, 450, 'boat');
+		this.player.setSize(54, 16, true);
 		this.player.setBounce(0.1);
 		this.player.setCollideWorldBounds(true);
 		//attempting to set bounding box to correct size
