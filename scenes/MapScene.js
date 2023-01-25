@@ -19,7 +19,7 @@ export class MapScene extends Phaser.Scene {
 	preload() {
 		//image assets
 		this.load.image('boat', 'assets/boat01enlarged.png');
-		this.load.image('map', 'assets/MapSized.png');
+		this.load.image('map', 'assets/map800x600.png');
 		this.load.image('particle', 'assets/particles/wake.png');
 
 		//ui elements
@@ -41,9 +41,9 @@ export class MapScene extends Phaser.Scene {
 
 
 		
-		this.add.image(318+165, 247, 'map'); //for some reason you need to place the image half of the original  height and width
-		this.add.image(0,0, 'panel').setOrigin(0,0); //ui set
-		this.add.image(318+165, 54+493, 'notifications'); //wtf
+		this.add.image(0,0, 'map').setOrigin(0,0); //for some reason you need to place the image half of the original  height and width
+		// this.add.image(0,0, 'panel').setOrigin(0,0); //ui set
+		// this.add.image(318+165, 54+493, 'notifications'); //wtf
 		var particles = this.add.particles('particle');
 
 		//particles emitter

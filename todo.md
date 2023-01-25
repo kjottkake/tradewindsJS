@@ -1,5 +1,5 @@
 []How do you create a scene?
-[]How do you change a scene?
+[x]How do you change a scene?
 []How do you click on an item?
 []How do you scale images?
     [x]Change boat size
@@ -18,9 +18,10 @@
     [x]Boat animation needs to be fixed
 
 []Collisions
-    []Added player and logo collision
+    [x]Added player and logo collision
 
 []UI
+    [x]General UI Layout
     []Menu Screen
     []Town screen
     []Map screen
