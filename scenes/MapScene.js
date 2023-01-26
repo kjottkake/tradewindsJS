@@ -43,19 +43,27 @@ export class MapScene extends Phaser.Scene {
 		// this.load.image('notifications', 'assets/ui/notifications.png');
 		
 		//sprite sheet assets
-		this.load.spritesheet('boatAnimated',
-			'assets/boat01keyframe.png',
-			{ frameWidth: 32, frameHeight: 32 }
-		);
+		// this.load.spritesheet('boatAnimated',
+		// 	'assets/boat01keyframe.png',
+		// 	{ frameWidth: 32, frameHeight: 32 }
+		// );
 
 		//loading in music
 		this.load.audio("ocean", 'assets/sounds/oceanwaves.mp3');
+
+		this.load.json('shapes', 'assets/boat.json');
 	}
 
 	create() {
+		
 		//setting boundaries for matter engine
-		// this.matter.world.setBounds(0, 0, 600, 800);
+		this.matter.world.setBounds().disableGravity();
 
+		var ballA = this.matter.add.image(420, 100, 'ball', null, { shape: 'circle', friction: 0.005, restitution: 0.6 });
+
+		var shapes = this.cache.json.get('shapes');
+
+		console.log(shapes);
 		// Add 2 groups for Bullet objects
 		// playerBullets = this.physics.add.group({ classType: Bullet, runChildUpdate: true });
 		// enemyBullets = this.physics.add.group({ classType: Bullet, runChildUpdate: true });
@@ -64,8 +72,8 @@ export class MapScene extends Phaser.Scene {
 
 		//matter sprite
 		// this.matter.add.image(0,0, 'map').setOrigin(0,0);
-		// this.matter.add.sprite(400, 100, 'boat', {shape: shapes.boat});
-		
+		// this.matter.add.sprite(400, 100, 'boat', {shape: shapes.boat01enlarged});
+		console.log({shape: shapes.boat01enlarged})
 		this.add.image(0,0, 'map').setOrigin(0,0); //for some reason you need to place the image half of the original  height and width
 		
 		// this.add.image(0,0, 'panel').setOrigin(0,0); //ui set
@@ -80,12 +88,12 @@ export class MapScene extends Phaser.Scene {
 		});
 
 		//original logo turned into boat
-		var drone = this.physics.add.image(400, 100, 'boat');
-		drone.setSize(54, 16, true);
+		var drone = this.matter.add.sprite(400, 100,'boat', {shape: 'circle'});
+		// drone.setSize(54, 16, true);
 
 		drone.setVelocity(10, 20);
 		drone.setBounce(1, 1);
-		drone.setCollideWorldBounds(true);
+		// drone.setCollideWorldBounds(true);
 		
 		// drone.setSize(drone.width, drone.height, true); //attempting to set bounding box to correct size
 		
@@ -95,15 +103,15 @@ export class MapScene extends Phaser.Scene {
 		//adding in player
 		
 		
-		this.player = this.physics.add.sprite(100, 450, 'boat');
-		this.player.setSize(54, 16, true);
-		this.player.setBounce(0.1);
-		this.player.setCollideWorldBounds(true);
+		this.player = this.matter.add.sprite(100, 450, 'boat', {shape: shapes.boat01enlarged});
+		// this.player.setSize(54, 16, true);
+		// this.player.setBounce(0.1);
+		// this.player.setCollideWorldBounds(true);
 		//attempting to set bounding box to correct size
 		// this.player.setSize(this.player.width, this.player.height, true);
 
 		this.cursors = this.input.keyboard.createCursorKeys();
-		this.physics.add.collider(this.player, drone);
+		// this.matter.add.collider(this.player, drone);
 
 		this.input.keyboard.once('keydown-SPACE', function(event) {
 			this.scene.start("town-scene")
@@ -137,7 +145,7 @@ export class MapScene extends Phaser.Scene {
 			// player.setVelocityY(-16);
 		}
 		else {
-			this.player.body.acceleration.set(0);
+			// this.player.body.acceleration.set(0);
 		}
 
 		if (this.cursors.left.isDown) {
