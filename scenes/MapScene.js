@@ -53,6 +53,8 @@ export class MapScene extends Phaser.Scene {
 	}
 
 	create() {
+		//setting boundaries for matter engine
+		// this.matter.world.setBounds(0, 0, 600, 800);
 
 		// Add 2 groups for Bullet objects
 		// playerBullets = this.physics.add.group({ classType: Bullet, runChildUpdate: true });
@@ -60,7 +62,12 @@ export class MapScene extends Phaser.Scene {
 				
 		this.sound.add("ocean", {loop: true});
 
+		//matter sprite
+		// this.matter.add.image(0,0, 'map').setOrigin(0,0);
+		// this.matter.add.sprite(400, 100, 'boat', {shape: shapes.boat});
+		
 		this.add.image(0,0, 'map').setOrigin(0,0); //for some reason you need to place the image half of the original  height and width
+		
 		// this.add.image(0,0, 'panel').setOrigin(0,0); //ui set
 		// this.add.image(318+165, 54+493, 'notifications'); //wtf
 		var particles = this.add.particles('particle');

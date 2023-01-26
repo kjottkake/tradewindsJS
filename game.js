@@ -11,7 +11,10 @@ var config = {
 		arcade: {
 			// gravity: { y: 20 }
             debug: true
-		}
+		},
+        render: {
+            pixelArt: true
+        }
 	},
 	scene: [MapScene, TownScene]
 };

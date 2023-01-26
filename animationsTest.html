@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
-    </head>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
+</head>
+
 <body>
     <script>
         var config = {
@@ -46,7 +48,7 @@
         }
 
         function create() {
-            ocean = this.sound.add("ocean", {loop: true});
+            ocean = this.sound.add("ocean", { loop: true });
             gun = this.sound.add('gun');
 
 
@@ -60,36 +62,58 @@
                 scale: { start: 1, end: 0 },
                 blendMode: 'ADD'
             });
-            
+
             //adding in player
             player = this.physics.add.sprite(220, 450, 'firing');
             player.setBounce(0.2);
             player.setCollideWorldBounds(true);
-            player.setSize(player.width, player.height, true); //attempting to set bounding box to correct size
-            emitter.startFollow(player);
+            // this.player.setSize(player.width, player.height, true); //attempting to set bounding box to correct size
+            // emitter.startFollow(player);
 
             // cursors = this.input.keyboard.createCursorKeys();
+            this.cursors = this.input.keyboard.createCursorKeys();
 
             //uncomment to hear the ocean
             ocean.play();
             // gun.play();
 
-            this.input.keyboard.on('keydown_SPACE', function (){
+            this.input.keyboard.on('keydown_SPACE', function () {
                 this.audioPlayDelay = 120;
                 gun.play();
                 player.anims.play('fire', true);
             });
 
             this.anims.create({
-            key: 'fire',
-            frames: this.anims.generateFrameNumbers('firing', { start: 0, end: 11 }),
-            frameRate: 12
+                key: 'fire',
+                frames: this.anims.generateFrameNumbers('firing', { start: 0, end: 11 }),
+                frameRate: 12
             });
         }
 
         function update() {
-            
+            // if (this.cursors.up.isDown) {
+            //     this.physics.velocityFromRotation(
+            //         this.player.rotation + 4.7123,
+            //         10,
+            //         this.player.body.acceleration
+            //     ); //player.rotation + angle in radians of sprite
+            //     // player.setVelocityY(-16);
+            // }
+            // else {
+            //     this.player.body.acceleration.set(0);
+            // }
+
+            // if (this.cursors.left.isDown) {
+            //     this.player.body.angularVelocity = -75;
+            // }
+            // else if (this.cursors.right.isDown) {
+            //     this.player.body.angularVelocity = 75;
+            // }
+            // else {
+            //     this.player.body.angularVelocity = 0;
+            // }
         }
     </script>
 </body>
+
 </html>

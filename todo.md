@@ -19,6 +19,7 @@
 
 []Collisions
     [x]Added player and logo collision
+    []Need to use PhysicsEditor to add collision shapes to sprites
 
 []UI
     [x]General UI Layout
